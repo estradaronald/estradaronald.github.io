@@ -1,248 +1,547 @@
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Ronald Estrada Jr. B. - CV</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🐱 Dancing Cat</title>
 
-  <style>
-    * {
-      box-sizing: border-box;
-    }
+    <style>
+        * {
+            box-sizing: border-box;
+        }
 
-    body {
-      margin: 0;
-      background: #f2f2f2;
-      color: #222;
-      font-family: Arial, Helvetica, sans-serif;
-      line-height: 1.45;
-    }
+        body {
+            margin: 0;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            font-family: Arial, sans-serif;
+            overflow: hidden;
 
-    .cv {
-      width: 800px;
-      max-width: calc(100% - 32px);
-      margin: 32px auto;
-      background: white;
-      padding: 48px 56px;
-      box-shadow: 0 4px 18px rgba(0, 0, 0, 0.12);
-    }
+            background:
+                radial-gradient(circle at 20% 20%, #ff4ecd55, transparent 25%),
+                radial-gradient(circle at 80% 30%, #4dffff55, transparent 25%),
+                linear-gradient(135deg, #12002b, #25005c, #09001a);
 
-    header {
-      border-bottom: 2px solid #222;
-      padding-bottom: 18px;
-      margin-bottom: 24px;
-    }
+            color: white;
+        }
 
-    h1 {
-      margin: 0 0 6px;
-      font-size: 30px;
-    }
+        h1 {
+            margin-bottom: 35px;
+            font-size: 42px;
+            text-shadow: 0 0 15px #fff;
+        }
 
-    .contact {
-      margin: 0;
-      font-size: 14px;
-      color: #444;
-    }
+        .stage {
+            width: 350px;
+            height: 430px;
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: flex-end;
+        }
 
-    section {
-      margin-bottom: 24px;
-    }
+        /* =========================
+           CAT
+        ========================= */
 
-    h2 {
-      font-size: 15px;
-      letter-spacing: 1.4px;
-      margin: 0 0 10px;
-      padding-bottom: 5px;
-      border-bottom: 1px solid #aaa;
-    }
+        .cat {
+            position: relative;
+            width: 180px;
+            height: 300px;
+            transform-origin: bottom center;
+        }
 
-    p {
-      margin: 5px 0;
-      font-size: 14px;
-    }
+        /* Head */
 
-    ul {
-      margin: 6px 0 0 20px;
-      padding: 0;
-      font-size: 14px;
-    }
+        .head {
+            position: absolute;
+            width: 150px;
+            height: 125px;
+            left: 15px;
+            top: 15px;
+            background: #f4a261;
+            border-radius: 50%;
+            z-index: 5;
+            box-shadow: inset -8px -8px 0 #d98245;
+        }
 
-    li {
-      margin-bottom: 4px;
-    }
+        /* Ears */
 
-    .project-title {
-      font-weight: bold;
-      margin-bottom: 2px;
-    }
+        .ear {
+            position: absolute;
+            width: 55px;
+            height: 65px;
+            background: #f4a261;
+            top: -25px;
+            z-index: -1;
+        }
 
-    .role {
-      font-weight: bold;
-      margin-bottom: 4px;
-    }
+        .ear.left {
+            left: 8px;
+            transform: rotate(-30deg);
+            border-radius: 10px 45px 5px 5px;
+        }
 
-    .label {
-      font-weight: bold;
-    }
+        .ear.right {
+            right: 8px;
+            transform: rotate(30deg);
+            border-radius: 45px 10px 5px 5px;
+        }
 
-    @media (max-width: 600px) {
-      .cv {
-        padding: 28px 24px;
-        margin: 16px auto;
-      }
+        .ear::after {
+            content: "";
+            position: absolute;
+            width: 30px;
+            height: 40px;
+            background: #ff8fab;
+            top: 12px;
+            left: 13px;
+            border-radius: 10px 25px 5px 5px;
+        }
 
-      h1 {
-        font-size: 25px;
-      }
-    }
+        /* Eyes */
 
-    @media print {
-      body {
-        background: white;
-      }
+        .eye {
+            position: absolute;
+            width: 25px;
+            height: 30px;
+            top: 43px;
+            background: #111;
+            border-radius: 50%;
+        }
 
-      .cv {
-        width: 100%;
-        max-width: none;
-        margin: 0;
-        box-shadow: none;
-      }
-    }
-  </style>
+        .eye.left {
+            left: 35px;
+        }
+
+        .eye.right {
+            right: 35px;
+        }
+
+        .eye::after {
+            content: "";
+            position: absolute;
+            width: 7px;
+            height: 7px;
+            background: white;
+            border-radius: 50%;
+            top: 5px;
+            left: 5px;
+        }
+
+        /* Nose */
+
+        .nose {
+            position: absolute;
+            width: 18px;
+            height: 14px;
+            background: #ff6b81;
+            left: 66px;
+            top: 75px;
+            border-radius: 50% 50% 60% 60%;
+        }
+
+        /* Mouth */
+
+        .mouth {
+            position: absolute;
+            width: 30px;
+            height: 15px;
+            left: 60px;
+            top: 88px;
+            border-bottom: 3px solid #222;
+            border-radius: 50%;
+        }
+
+        /* Whiskers */
+
+        .whisker {
+            position: absolute;
+            width: 45px;
+            height: 2px;
+            background: #333;
+            top: 80px;
+        }
+
+        .whisker.w1 {
+            left: -25px;
+            transform: rotate(10deg);
+        }
+
+        .whisker.w2 {
+            left: -25px;
+            top: 90px;
+            transform: rotate(-5deg);
+        }
+
+        .whisker.w3 {
+            right: -25px;
+            transform: rotate(-10deg);
+        }
+
+        .whisker.w4 {
+            right: -25px;
+            top: 90px;
+            transform: rotate(5deg);
+        }
+
+        /* Body */
+
+        .body {
+            position: absolute;
+            width: 115px;
+            height: 145px;
+            left: 33px;
+            top: 120px;
+            background: #f4a261;
+            border-radius: 45% 45% 35% 35%;
+            box-shadow: inset -8px -8px 0 #d98245;
+            z-index: 2;
+        }
+
+        /* Belly */
+
+        .belly {
+            position: absolute;
+            width: 75px;
+            height: 100px;
+            background: #ffd6a5;
+            border-radius: 50%;
+            left: 20px;
+            top: 25px;
+        }
+
+        /* Arms */
+
+        .arm {
+            position: absolute;
+            width: 28px;
+            height: 105px;
+            background: #f4a261;
+            top: 135px;
+            border-radius: 20px;
+            z-index: 1;
+            transform-origin: top center;
+        }
+
+        .arm.left {
+            left: 20px;
+        }
+
+        .arm.right {
+            right: 20px;
+        }
+
+        /* Legs */
+
+        .leg {
+            position: absolute;
+            width: 35px;
+            height: 100px;
+            background: #f4a261;
+            top: 245px;
+            border-radius: 20px;
+            z-index: 1;
+            transform-origin: top center;
+        }
+
+        .leg.left {
+            left: 45px;
+        }
+
+        .leg.right {
+            right: 45px;
+        }
+
+        /* Paws */
+
+        .paw {
+            position: absolute;
+            width: 38px;
+            height: 25px;
+            background: #f4a261;
+            border-radius: 50%;
+        }
+
+        /* Tail */
+
+        .tail {
+            position: absolute;
+            width: 110px;
+            height: 30px;
+            border: 12px solid #f4a261;
+            border-left: none;
+            border-radius: 0 50px 50px 0;
+            right: -70px;
+            top: 195px;
+            transform: rotate(-20deg);
+            transform-origin: left center;
+            z-index: 0;
+        }
+
+        /* =========================
+           DANCE ANIMATION
+        ========================= */
+
+        .cat.dancing {
+            animation: bodyDance 0.5s infinite alternate ease-in-out;
+        }
+
+        .cat.dancing .head {
+            animation: headDance 0.5s infinite alternate ease-in-out;
+        }
+
+        .cat.dancing .arm.left {
+            animation: leftArm 0.4s infinite alternate ease-in-out;
+        }
+
+        .cat.dancing .arm.right {
+            animation: rightArm 0.4s infinite alternate ease-in-out;
+        }
+
+        .cat.dancing .leg.left {
+            animation: leftLeg 0.5s infinite alternate ease-in-out;
+        }
+
+        .cat.dancing .leg.right {
+            animation: rightLeg 0.5s infinite alternate ease-in-out;
+        }
+
+        .cat.dancing .tail {
+            animation: tailDance 0.4s infinite alternate ease-in-out;
+        }
+
+        @keyframes bodyDance {
+            0% {
+                transform: translateY(0) rotate(-6deg);
+            }
+
+            100% {
+                transform: translateY(-20px) rotate(6deg);
+            }
+        }
+
+        @keyframes headDance {
+            0% {
+                transform: rotate(-8deg);
+            }
+
+            100% {
+                transform: rotate(8deg);
+            }
+        }
+
+        @keyframes leftArm {
+            0% {
+                transform: rotate(35deg);
+            }
+
+            100% {
+                transform: rotate(-55deg);
+            }
+        }
+
+        @keyframes rightArm {
+            0% {
+                transform: rotate(-35deg);
+            }
+
+            100% {
+                transform: rotate(55deg);
+            }
+        }
+
+        @keyframes leftLeg {
+            0% {
+                transform: rotate(15deg);
+            }
+
+            100% {
+                transform: rotate(-20deg);
+            }
+        }
+
+        @keyframes rightLeg {
+            0% {
+                transform: rotate(-15deg);
+            }
+
+            100% {
+                transform: rotate(20deg);
+            }
+        }
+
+        @keyframes tailDance {
+            0% {
+                transform: rotate(-35deg);
+            }
+
+            100% {
+                transform: rotate(35deg);
+            }
+        }
+
+        /* =========================
+           BUTTON
+        ========================= */
+
+        button {
+            margin-top: 20px;
+            padding: 15px 35px;
+            border: none;
+            border-radius: 50px;
+            background: white;
+            color: #25005c;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            box-shadow: 0 0 20px #ffffff88;
+            transition: 0.2s;
+        }
+
+        button:hover {
+            transform: scale(1.08);
+            box-shadow: 0 0 30px white;
+        }
+
+        button:active {
+            transform: scale(0.95);
+        }
+
+        /* Disco floor */
+
+        .floor {
+            position: absolute;
+            bottom: 20px;
+            width: 330px;
+            height: 20px;
+            background: #ffffff33;
+            border-radius: 50%;
+            box-shadow: 0 0 30px #fff;
+        }
+
+        /* Floating music notes */
+
+        .note {
+            position: absolute;
+            font-size: 35px;
+            animation: float 3s infinite ease-in-out;
+            opacity: 0.7;
+        }
+
+        .note.one {
+            left: 20%;
+            top: 20%;
+        }
+
+        .note.two {
+            right: 20%;
+            top: 30%;
+            animation-delay: 1s;
+        }
+
+        .note.three {
+            left: 15%;
+            top: 60%;
+            animation-delay: 2s;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(0) rotate(0deg);
+            }
+
+            50% {
+                transform: translateY(-30px) rotate(15deg);
+            }
+
+            100% {
+                transform: translateY(0) rotate(0deg);
+            }
+        }
+    </style>
 </head>
 
 <body>
 
-  <main class="cv">
+    <h1>🐱 Dancing Cat</h1>
 
-    <!-- HEADER -->
-    <header>
-      <h1>Estrada, Ronald JR. B.</h1>
+    <div class="stage">
 
-      <p class="contact">
-        Bugallon, Pangasinan, Philippines |
-        +63 9260123073 |
-        estradaronald287@gmail.com
-      </p>
-    </header>
+        <div class="floor"></div>
 
+        <div class="cat" id="cat">
 
-    <!-- TECHNICAL SKILLS -->
-    <section>
-      <h2>TECHNICAL SKILLS</h2>
+            <!-- Head -->
+            <div class="head">
 
-      <ul>
-        <li>
-          <span class="label">Programming Languages:</span>
-          Python, SQL
-        </li>
+                <div class="ear left"></div>
+                <div class="ear right"></div>
 
-        <li>
-          <span class="label">Scripting:</span>
-          Bash
-        </li>
+                <div class="eye left"></div>
+                <div class="eye right"></div>
 
-        <li>
-          <span class="label">Databases:</span>
-          MySQL, PostgreSQL
-        </li>
+                <div class="nose"></div>
+                <div class="mouth"></div>
 
-        <li>
-          <span class="label">Cloud:</span>
-          AWS
-        </li>
+                <div class="whisker w1"></div>
+                <div class="whisker w2"></div>
+                <div class="whisker w3"></div>
+                <div class="whisker w4"></div>
 
-        <li>
-          <span class="label">Data Transformation:</span>
-          dbt
-        </li>
+            </div>
 
-        <li>
-          <span class="label">Version Control:</span>
-          Git, GitHub
-        </li>
-      </ul>
-    </section>
+            <!-- Body -->
+            <div class="body">
+                <div class="belly"></div>
+            </div>
 
+            <!-- Arms -->
+            <div class="arm left"></div>
+            <div class="arm right"></div>
 
-    <!-- PROFESSIONAL SUMMARY -->
-    <section>
-      <h2>PROFESSIONAL SUMMARY</h2>
+            <!-- Legs -->
+            <div class="leg left"></div>
+            <div class="leg right"></div>
 
-      <p>
-        Aspiring Junior Data Engineer and fourth-year BSIT student with hands on
-        experience in SQL, Python, AWS, and database management. Passionate about
-        building scalable data pipelines and cloud based data solutions while
-        continuously expanding my technical skills.
-      </p>
-    </section>
+            <!-- Tail -->
+            <div class="tail"></div>
 
+        </div>
 
-    <!-- EDUCATION -->
-    <section>
-      <h2>EDUCATION</h2>
+    </div>
 
-      <p>
-        <strong>PHINMA University of Pangasinan</strong>
-      </p>
+    <div class="note one">♪</div>
+    <div class="note two">♫</div>
+    <div class="note three">♪</div>
 
-      <p>
-        Bachelor of Science in Information Technology (BSIT)
-      </p>
+    <button id="danceButton">💃 MAKE CAT DANCE 🕺</button>
 
-      <p>
-        (Currently Enrolled)
-      </p>
-    </section>
+    <script>
+        const cat = document.getElementById("cat");
+        const button = document.getElementById("danceButton");
 
+        let dancing = false;
 
-    <!-- PROJECT -->
-    <section>
-      <h2>PROJECT</h2>
+        button.addEventListener("click", () => {
 
-      <p class="project-title">
-        Bolosan ES Learners' Information Management System
-        (BLIMS) | 2026
-      </p>
+            dancing = !dancing;
 
-      <p class="role">
-        Backend Developer
-      </p>
+            if (dancing) {
+                cat.classList.add("dancing");
+                button.textContent = "🛑 STOP THE CAT";
+            } else {
+                cat.classList.remove("dancing");
+                button.textContent = "💃 MAKE CAT DANCE 🕺";
+            }
 
-      <p>
-        <span class="label">Tech Stack:</span>
-        HTML, CSS, JavaScript, Node.js, MongoDB
-      </p>
-
-      <ul>
-        <li>
-          Developed backend APIs using Node.js to manage learner
-          information, grading, and school announcements.
-        </li>
-
-        <li>
-          Designed and maintained MongoDB collections for storing
-          and retrieving student and academic data.
-        </li>
-
-        <li>
-          Implemented CRUD operations to ensure accurate and
-          efficient data management.
-        </li>
-
-        <li>
-          Worked with JSON data and database queries to support
-          application functionality.
-        </li>
-
-        <li>
-          Collaborated with the development team to build and
-          maintain the system.
-        </li>
-      </ul>
-    </section>
-
-  </main>
+        });
+    </script>
 
 </body>
 </html>
+```
