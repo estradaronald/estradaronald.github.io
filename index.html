@@ -1,678 +1,1406 @@
-```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>🐱 Pinoy Budots Cat</title>
-
-    <style>
-        * {
-            box-sizing: border-box;
-        }
-
-        body {
-            margin: 0;
-            height: 100vh;
-            overflow: hidden;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-direction: column;
-            font-family: Arial, sans-serif;
-
-            background:
-                radial-gradient(circle at 50% 30%, #4b0082, transparent 35%),
-                linear-gradient(135deg, #12001f, #050505);
-
-            color: white;
-        }
-
-        h1 {
-            font-size: 40px;
-            margin-bottom: 10px;
-            text-shadow: 0 0 15px #ff00ff;
-        }
-
-        .subtitle {
-            margin-bottom: 25px;
-            opacity: .8;
-        }
-
-        /* =========================
-           STAGE
-        ========================= */
-
-        .stage {
-            position: relative;
-            width: 350px;
-            height: 420px;
-            display: flex;
-            justify-content: center;
-            align-items: flex-end;
-        }
-
-        .floor {
-            position: absolute;
-            bottom: 20px;
-            width: 300px;
-            height: 35px;
-            border-radius: 50%;
-            background: #ffffff22;
-            box-shadow:
-                0 0 25px #ff00ff,
-                0 0 50px #00ffff;
-        }
-
-        /* =========================
-           CAT
-        ========================= */
-
-        .cat {
-            position: relative;
-            width: 180px;
-            height: 330px;
-            transform-origin: bottom center;
-        }
-
-        /* HEAD */
-
-        .head {
-            position: absolute;
-            width: 150px;
-            height: 125px;
-            left: 15px;
-            top: 5px;
-
-            background: #f4a261;
-            border-radius: 50%;
-            z-index: 5;
-
-            box-shadow: inset -8px -8px #d47b3f;
-        }
-
-        /* EARS */
-
-        .ear {
-            position: absolute;
-            width: 55px;
-            height: 65px;
-            top: -25px;
-
-            background: #f4a261;
-            z-index: -1;
-        }
-
-        .ear.left {
-            left: 8px;
-            transform: rotate(-30deg);
-            border-radius: 10px 45px 5px 5px;
-        }
+<meta charset="UTF-8">
 
-        .ear.right {
-            right: 8px;
-            transform: rotate(30deg);
-            border-radius: 45px 10px 5px 5px;
-        }
+<meta name="viewport"
+      content="width=device-width,
+      initial-scale=1.0,
+      maximum-scale=1.0,
+      user-scalable=no">
 
-        .ear::after {
-            content: "";
-            position: absolute;
+<title>Maze Runner</title>
 
-            width: 30px;
-            height: 40px;
+<style>
 
-            left: 13px;
-            top: 12px;
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    -webkit-tap-highlight-color: transparent;
+}
 
-            background: #ff8fab;
-            border-radius: 15px;
-        }
+body {
+    min-height: 100vh;
 
-        /* EYES */
+    background:
+        radial-gradient(
+            circle at top,
+            #252525,
+            #111
+        );
 
-        .eye {
-            position: absolute;
-            top: 42px;
+    color: white;
 
-            width: 24px;
-            height: 30px;
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
 
-            background: #111;
-            border-radius: 50%;
-        }
+    display: flex;
+    justify-content: center;
 
-        .eye.left {
-            left: 35px;
-        }
+    touch-action: manipulation;
+}
 
-        .eye.right {
-            right: 35px;
-        }
+.game {
+    width: min(600px, 100%);
+    padding: 20px 15px 25px;
+}
 
-        .eye::after {
-            content: "";
 
-            position: absolute;
-            width: 7px;
-            height: 7px;
+/* =========================
+   TITLE
+========================= */
 
-            top: 5px;
-            left: 5px;
+.title {
+    text-align: center;
 
-            background: white;
-            border-radius: 50%;
-        }
+    font-size: 30px;
 
-        /* NOSE */
+    font-weight: 900;
 
-        .nose {
-            position: absolute;
+    margin-bottom: 5px;
+}
 
-            width: 18px;
-            height: 14px;
+.subtitle {
+    text-align: center;
 
-            top: 74px;
-            left: 66px;
+    color: #888;
 
-            background: #ff6b81;
-            border-radius: 50%;
-        }
+    font-size: 13px;
 
-        /* MOUTH */
+    margin-bottom: 18px;
+}
 
-        .mouth {
-            position: absolute;
 
-            width: 30px;
-            height: 17px;
+/* =========================
+   STATS
+========================= */
 
-            top: 87px;
-            left: 60px;
+.stats {
+    display: flex;
 
-            border-bottom: 3px solid #222;
-            border-radius: 50%;
-        }
+    justify-content: center;
 
-        /* =========================
-           BODY
-        ========================= */
+    gap: 45px;
 
-        .body {
-            position: absolute;
+    margin-bottom: 15px;
+}
 
-            width: 115px;
-            height: 145px;
+.stat {
+    text-align: center;
+}
 
-            left: 33px;
-            top: 110px;
+.stat-value {
+    font-size: 20px;
+    font-weight: 900;
+}
 
-            background: #f4a261;
-            border-radius: 45% 45% 35% 35%;
+.stat-label {
+    color: #777;
 
-            box-shadow: inset -8px -8px #d47b3f;
+    font-size: 9px;
 
-            z-index: 2;
-        }
+    text-transform: uppercase;
 
-        .belly {
-            position: absolute;
+    letter-spacing: 1px;
+}
 
-            width: 75px;
-            height: 100px;
 
-            left: 20px;
-            top: 25px;
+/* =========================
+   MAZE
+========================= */
 
-            background: #ffd6a5;
-            border-radius: 50%;
-        }
+.maze-wrapper {
 
-        /* =========================
-           ARMS
-        ========================= */
+    width: 100%;
 
-        .arm {
-            position: absolute;
+    display: flex;
 
-            width: 28px;
-            height: 105px;
+    justify-content: center;
 
-            top: 125px;
+    margin-bottom: 18px;
+}
 
-            background: #f4a261;
-            border-radius: 20px;
+canvas {
 
-            transform-origin: top center;
+    width: min(90vw, 540px);
 
-            z-index: 1;
-        }
+    height: auto;
 
-        .arm.left {
-            left: 20px;
-        }
+    aspect-ratio: 1 / 1;
 
-        .arm.right {
-            right: 20px;
-        }
+    background: #202020;
 
-        /* =========================
-           LEGS
-        ========================= */
+    border-radius: 8px;
 
-        .leg {
-            position: absolute;
+    box-shadow:
+        0 15px 40px
+        rgba(0,0,0,.5);
 
-            width: 38px;
-            height: 95px;
+    touch-action: none;
+}
 
-            top: 235px;
 
-            background: #f4a261;
-            border-radius: 20px;
+/* =========================
+   MESSAGE
+========================= */
 
-            transform-origin: top center;
+.message {
 
-            z-index: 1;
-        }
+    text-align: center;
 
-        .leg.left {
-            left: 42px;
-        }
+    min-height: 24px;
 
-        .leg.right {
-            right: 42px;
-        }
+    font-weight: 800;
 
-        /* =========================
-           TAIL
-        ========================= */
+    color: #aaa;
 
-        .tail {
-            position: absolute;
+    margin-bottom: 10px;
+}
 
-            width: 115px;
-            height: 35px;
 
-            right: -75px;
-            top: 180px;
+/* =========================
+   CONTROLS
+========================= */
 
-            border: 12px solid #f4a261;
-            border-left: none;
+.controls {
 
-            border-radius: 0 50px 50px 0;
+    display: flex;
 
-            transform-origin: left center;
+    flex-direction: column;
 
-            z-index: 0;
-        }
+    align-items: center;
 
-        /* =========================
-           BUDOTS DANCE
-        ========================= */
+    gap: 7px;
 
-        .cat.dancing {
-            animation: budotsBody .35s infinite alternate ease-in-out;
-        }
+    margin-top: 5px;
+}
 
-        .cat.dancing .head {
-            animation: budotsHead .35s infinite alternate ease-in-out;
-        }
+.control-row {
 
-        .cat.dancing .body {
-            animation: hipShake .22s infinite alternate ease-in-out;
-        }
+    display: flex;
 
-        .cat.dancing .arm.left {
-            animation: leftArm .25s infinite alternate ease-in-out;
-        }
+    gap: 7px;
+}
 
-        .cat.dancing .arm.right {
-            animation: rightArm .25s infinite alternate ease-in-out;
-        }
+.arrow {
 
-        .cat.dancing .leg.left {
-            animation: leftLeg .22s infinite alternate ease-in-out;
-        }
+    width: 62px;
 
-        .cat.dancing .leg.right {
-            animation: rightLeg .22s infinite alternate ease-in-out;
-        }
+    height: 52px;
 
-        .cat.dancing .tail {
-            animation: tailShake .2s infinite alternate ease-in-out;
-        }
+    border: none;
 
-        /* BODY BOUNCE */
+    border-radius: 13px;
 
-        @keyframes budotsBody {
+    background:
+        linear-gradient(
+            145deg,
+            #333,
+            #1b1b1b
+        );
 
-            0% {
-                transform:
-                    translateY(5px)
-                    rotate(-3deg)
-                    scaleY(.96);
-            }
+    color: white;
 
-            50% {
-                transform:
-                    translateY(-5px)
-                    rotate(0deg)
-                    scaleY(1);
-            }
+    font-size: 25px;
 
-            100% {
-                transform:
-                    translateY(10px)
-                    rotate(3deg)
-                    scaleY(.94);
-            }
-        }
+    font-weight: 900;
 
-        /* HEAD */
+    box-shadow:
+        0 5px 12px
+        rgba(0,0,0,.35);
 
-        @keyframes budotsHead {
+    cursor: pointer;
 
-            0% {
-                transform: rotate(-8deg);
-            }
+    user-select: none;
 
-            100% {
-                transform: rotate(8deg);
-            }
-        }
+    touch-action: manipulation;
+}
 
-        /* HIPS */
+.arrow:active {
 
-        @keyframes hipShake {
+    transform: scale(.91);
 
-            0% {
-                transform: translateX(-12px) rotate(-4deg);
-            }
+    background: #444;
+}
 
-            100% {
-                transform: translateX(12px) rotate(4deg);
-            }
-        }
 
-        /* ARMS */
+/* =========================
+   BUTTONS
+========================= */
 
-        @keyframes leftArm {
+.actions {
 
-            0% {
-                transform: rotate(55deg);
-            }
+    display: grid;
 
-            100% {
-                transform: rotate(-65deg);
-            }
-        }
+    grid-template-columns:
+        1fr 1fr;
 
-        @keyframes rightArm {
+    gap: 8px;
 
-            0% {
-                transform: rotate(-65deg);
-            }
+    margin-top: 15px;
+}
 
-            100% {
-                transform: rotate(55deg);
-            }
-        }
+.action {
 
-        /* LEGS */
+    height: 45px;
 
-        @keyframes leftLeg {
+    border: none;
 
-            0% {
-                transform:
-                    rotate(18deg)
-                    translateY(0);
-            }
+    border-radius: 11px;
 
-            100% {
-                transform:
-                    rotate(-18deg)
-                    translateY(10px);
-            }
-        }
+    color: white;
 
-        @keyframes rightLeg {
+    background:
+        rgba(255,255,255,.08);
 
-            0% {
-                transform:
-                    rotate(-18deg)
-                    translateY(10px);
-            }
+    font-weight: 800;
 
-            100% {
-                transform:
-                    rotate(18deg)
-                    translateY(0);
-            }
-        }
+    cursor: pointer;
+}
 
-        /* TAIL */
+.action:active {
 
-        @keyframes tailShake {
+    transform: scale(.95);
+}
 
-            0% {
-                transform: rotate(-45deg);
-            }
+.new-maze {
 
-            100% {
-                transform: rotate(45deg);
-            }
-        }
+    background:
+        linear-gradient(
+            135deg,
+            #625cff,
+            #924bff
+        );
+}
 
-        /* =========================
-           BUTTON
-        ========================= */
 
-        button {
-            margin-top: 15px;
+/* =========================
+   WIN SCREEN
+========================= */
 
-            padding: 16px 35px;
+.win {
 
-            border: none;
-            border-radius: 50px;
+    position: fixed;
 
-            background: linear-gradient(
-                90deg,
-                #ff006e,
-                #8338ec,
-                #3a86ff
-            );
+    inset: 0;
 
-            color: white;
+    background:
+        rgba(0,0,0,.88);
 
-            font-size: 18px;
-            font-weight: bold;
+    display: none;
 
-            cursor: pointer;
+    align-items: center;
 
-            box-shadow:
-                0 0 15px #ff006e,
-                0 0 30px #8338ec;
+    justify-content: center;
 
-            transition: .2s;
-        }
+    padding: 20px;
 
-        button:hover {
-            transform: scale(1.08);
-        }
+    z-index: 100;
+}
 
-        button:active {
-            transform: scale(.95);
-        }
+.win.show {
 
-        /* =========================
-           MUSIC NOTES
-        ========================= */
+    display: flex;
+}
 
-        .note {
-            position: absolute;
+.win-card {
 
-            font-size: 35px;
+    width: min(380px, 90%);
 
-            animation: floatingNotes 2s infinite ease-in-out;
+    background:
+        #1c1c21;
 
-            opacity: .8;
-        }
+    border:
+        1px solid
+        rgba(255,255,255,.1);
 
-        .note.one {
-            left: 15%;
-            top: 25%;
-        }
+    border-radius: 22px;
 
-        .note.two {
-            right: 15%;
-            top: 35%;
-            animation-delay: .5s;
-        }
+    padding: 30px;
 
-        .note.three {
-            left: 20%;
-            top: 65%;
-            animation-delay: 1s;
-        }
+    text-align: center;
 
-        @keyframes floatingNotes {
+    box-shadow:
+        0 20px 70px
+        rgba(0,0,0,.7);
+}
 
-            0% {
-                transform: translateY(0) rotate(0);
-            }
+.win-icon {
 
-            50% {
-                transform: translateY(-30px) rotate(20deg);
-            }
+    font-size: 65px;
 
-            100% {
-                transform: translateY(0) rotate(0);
-            }
-        }
+    margin-bottom: 10px;
+}
 
-        /* =========================
-           DISCO LIGHTS
-        ========================= */
+.win-title {
 
-        body.dancing {
-            animation: disco .25s infinite alternate;
-        }
+    font-size: 30px;
 
-        @keyframes disco {
+    font-weight: 900;
 
-            0% {
-                background:
-                    radial-gradient(
-                        circle at 20% 30%,
-                        #ff006e55,
-                        transparent 30%
-                    ),
-                    #140020;
-            }
+    margin-bottom: 10px;
+}
 
-            100% {
-                background:
-                    radial-gradient(
-                        circle at 80% 40%,
-                        #00ffff55,
-                        transparent 30%
-                    ),
-                    #00142a;
-            }
-        }
+.win-info {
 
-    </style>
+    color: #aaa;
+
+    line-height: 1.7;
+
+    margin-bottom: 20px;
+}
+
+.play-again {
+
+    width: 100%;
+
+    height: 48px;
+
+    border: none;
+
+    border-radius: 12px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #625cff,
+            #924bff
+        );
+
+    color: white;
+
+    font-weight: 900;
+
+    font-size: 15px;
+}
+
+
+/* =========================
+   DESKTOP HINT
+========================= */
+
+.keyboard-hint {
+
+    text-align: center;
+
+    color: #555;
+
+    font-size: 11px;
+
+    margin-top: 15px;
+}
+
+
+@media(max-width: 400px) {
+
+    .game {
+        padding-top: 14px;
+    }
+
+    .title {
+        font-size: 26px;
+    }
+
+    .stats {
+        gap: 30px;
+    }
+
+    .arrow {
+        width: 58px;
+        height: 50px;
+    }
+
+}
+
+</style>
 </head>
+
 
 <body>
 
-    <h1>🐱 BUDOTS CAT</h1>
 
-    <div class="subtitle">
-        🇵🇭 PINOY DANCE MODE 🇵🇭
+<div class="game">
+
+    <div class="title">
+        🧩 MAZE RUNNER
     </div>
 
-    <div class="stage">
+    <div class="subtitle">
+        Find your way home
+    </div>
 
-        <div class="floor"></div>
 
-        <div class="cat" id="cat">
+    <!-- STATS -->
 
-            <!-- HEAD -->
-            <div class="head">
+    <div class="stats">
 
-                <div class="ear left"></div>
-                <div class="ear right"></div>
+        <div class="stat">
 
-                <div class="eye left"></div>
-                <div class="eye right"></div>
+            <div
+                class="stat-value"
+                id="timer">
 
-                <div class="nose"></div>
-                <div class="mouth"></div>
+                0:00
 
             </div>
 
-            <!-- BODY -->
-            <div class="body">
-                <div class="belly"></div>
+            <div class="stat-label">
+                Time
             </div>
 
-            <!-- ARMS -->
-            <div class="arm left"></div>
-            <div class="arm right"></div>
+        </div>
 
-            <!-- LEGS -->
-            <div class="leg left"></div>
-            <div class="leg right"></div>
 
-            <!-- TAIL -->
-            <div class="tail"></div>
+        <div class="stat">
+
+            <div
+                class="stat-value"
+                id="moves">
+
+                0
+
+            </div>
+
+            <div class="stat-label">
+                Moves
+            </div>
 
         </div>
 
     </div>
 
-    <div class="note one">🎵</div>
-    <div class="note two">♫</div>
-    <div class="note three">🎶</div>
 
-    <button id="danceButton">
-        🔥 START BUDOTS 🔥
-    </button>
+    <!-- MAZE -->
+
+    <div class="maze-wrapper">
+
+        <canvas
+            id="maze"
+            width="600"
+            height="600">
+        </canvas>
+
+    </div>
 
 
-    <script>
+    <div
+        class="message"
+        id="message">
 
-        const cat = document.getElementById("cat");
-        const button = document.getElementById("danceButton");
+        Reach the 🏠!
 
-        let dancing = false;
+    </div>
 
-        button.addEventListener("click", () => {
 
-            dancing = !dancing;
+    <!-- TOUCH CONTROLS -->
 
-            if (dancing) {
+    <div class="controls">
 
-                cat.classList.add("dancing");
-                document.body.classList.add("dancing");
+        <div class="control-row">
 
-                button.textContent = "🛑 STOP BUDOTS";
+            <button
+                class="arrow"
+                data-direction="up">
 
-            } else {
+                ↑
 
-                cat.classList.remove("dancing");
-                document.body.classList.remove("dancing");
+            </button>
 
-                button.textContent = "🔥 START BUDOTS 🔥";
+        </div>
+
+
+        <div class="control-row">
+
+            <button
+                class="arrow"
+                data-direction="left">
+
+                ←
+
+            </button>
+
+
+            <button
+                class="arrow"
+                data-direction="down">
+
+                ↓
+
+            </button>
+
+
+            <button
+                class="arrow"
+                data-direction="right">
+
+                →
+
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <!-- ACTIONS -->
+
+    <div class="actions">
+
+        <button
+            class="action new-maze"
+            id="newMaze">
+
+            🎲 New Maze
+
+        </button>
+
+
+        <button
+            class="action"
+            id="reset">
+
+            ↻ Reset
+
+        </button>
+
+    </div>
+
+
+    <div class="keyboard-hint">
+
+        💻 Laptop: use ↑ ↓ ← → or WASD
+
+    </div>
+
+</div>
+
+
+<!-- =========================
+     WIN SCREEN
+========================= -->
+
+<div
+    class="win"
+    id="win">
+
+    <div class="win-card">
+
+        <div class="win-icon">
+            🏠
+        </div>
+
+        <div class="win-title">
+            YOU ESCAPED!
+        </div>
+
+        <div
+            class="win-info"
+            id="winInfo">
+        </div>
+
+        <button
+            class="play-again"
+            id="playAgain">
+
+            🎲 Play Again
+
+        </button>
+
+    </div>
+
+</div>
+
+
+<script>
+
+/* ==================================================
+   SETTINGS
+================================================== */
+
+const canvas =
+    document.getElementById("maze");
+
+const ctx =
+    canvas.getContext("2d");
+
+const timerElement =
+    document.getElementById("timer");
+
+const movesElement =
+    document.getElementById("moves");
+
+const messageElement =
+    document.getElementById("message");
+
+const winScreen =
+    document.getElementById("win");
+
+const winInfo =
+    document.getElementById("winInfo");
+
+
+/*
+    Increase this number for a harder maze.
+
+    15 = easy
+    21 = medium
+    25 = harder
+*/
+
+const SIZE = 21;
+
+
+/* ==================================================
+   GAME STATE
+================================================== */
+
+let maze = [];
+
+let player = {
+    x: 0,
+    y: 0
+};
+
+let goal = {
+    x: SIZE - 1,
+    y: SIZE - 1
+};
+
+let moves = 0;
+
+let startTime = null;
+
+let timerInterval = null;
+
+let gameWon = false;
+
+
+/* ==================================================
+   CELL SIZE
+================================================== */
+
+const cellSize =
+    canvas.width / SIZE;
+
+
+/* ==================================================
+   GENERATE MAZE
+================================================== */
+
+function generateMaze() {
+
+    /*
+       Start with walls everywhere.
+    */
+
+    maze =
+        Array.from(
+            { length: SIZE },
+            () =>
+                Array(SIZE).fill(1)
+        );
+
+
+    /*
+       Recursive backtracking maze generator.
+    */
+
+    function carve(x, y) {
+
+        maze[y][x] = 0;
+
+
+        const directions = [
+
+            [ 2, 0 ],
+
+            [-2, 0],
+
+            [ 0, 2],
+
+            [ 0,-2]
+
+        ];
+
+
+        /*
+           Randomize directions.
+        */
+
+        directions.sort(
+            () => Math.random() - .5
+        );
+
+
+        for (
+            const [dx, dy]
+            of directions
+        ) {
+
+            const nx =
+                x + dx;
+
+            const ny =
+                y + dy;
+
+
+            if (
+                nx > 0 &&
+                nx < SIZE - 1 &&
+                ny > 0 &&
+                ny < SIZE - 1 &&
+                maze[ny][nx] === 1
+            ) {
+
+                /*
+                   Remove wall between cells.
+                */
+
+                maze[
+                    y + dy / 2
+                ][
+                    x + dx / 2
+                ] = 0;
+
+
+                carve(
+                    nx,
+                    ny
+                );
 
             }
 
-        });
+        }
 
-    </script>
+    }
+
+
+    carve(1, 1);
+
+
+    /*
+       Open entrance.
+    */
+
+    maze[0][1] = 0;
+
+
+    /*
+       Open exit.
+    */
+
+    maze[SIZE - 1][SIZE - 2] = 0;
+
+
+    player.x = 1;
+    player.y = 0;
+
+    goal.x = SIZE - 2;
+    goal.y = SIZE - 1;
+
+}
+
+
+/* ==================================================
+   DRAW MAZE
+================================================== */
+
+function drawMaze() {
+
+    ctx.clearRect(
+        0,
+        0,
+        canvas.width,
+        canvas.height
+    );
+
+
+    /*
+       Background.
+    */
+
+    ctx.fillStyle = "#191919";
+
+    ctx.fillRect(
+        0,
+        0,
+        canvas.width,
+        canvas.height
+    );
+
+
+    /*
+       Draw cells.
+    */
+
+    for (
+        let y = 0;
+        y < SIZE;
+        y++
+    ) {
+
+        for (
+            let x = 0;
+            x < SIZE;
+            x++
+        ) {
+
+            const px =
+                x * cellSize;
+
+            const py =
+                y * cellSize;
+
+
+            if (maze[y][x] === 1) {
+
+                /*
+                   WALL
+                */
+
+                ctx.fillStyle =
+                    "#eeeeee";
+
+                ctx.fillRect(
+                    px,
+                    py,
+                    cellSize + 1,
+                    cellSize + 1
+                );
+
+            }
+
+        }
+
+    }
+
+
+    /*
+       Goal.
+    */
+
+    drawGoal();
+
+
+    /*
+       Player.
+    */
+
+    drawPlayer();
+
+}
+
+
+/* ==================================================
+   DRAW GOAL
+================================================== */
+
+function drawGoal() {
+
+    const x =
+        goal.x * cellSize;
+
+    const y =
+        goal.y * cellSize;
+
+
+    ctx.font =
+        `${cellSize * .8}px Arial`;
+
+    ctx.textAlign = "center";
+
+    ctx.textBaseline = "middle";
+
+
+    ctx.fillText(
+        "🏠",
+        x + cellSize / 2,
+        y + cellSize / 2
+    );
+
+}
+
+
+/* ==================================================
+   DRAW PLAYER
+================================================== */
+
+function drawPlayer() {
+
+    const x =
+        player.x * cellSize;
+
+    const y =
+        player.y * cellSize;
+
+
+    ctx.font =
+        `${cellSize * .75}px Arial`;
+
+    ctx.textAlign = "center";
+
+    ctx.textBaseline = "middle";
+
+
+    ctx.fillText(
+        "🙂",
+        x + cellSize / 2,
+        y + cellSize / 2
+    );
+
+}
+
+
+/* ==================================================
+   MOVE PLAYER
+================================================== */
+
+function movePlayer(dx, dy) {
+
+    if (gameWon)
+        return;
+
+
+    const newX =
+        player.x + dx;
+
+    const newY =
+        player.y + dy;
+
+
+    /*
+       Outside maze?
+    */
+
+    if (
+        newX < 0 ||
+        newX >= SIZE ||
+        newY < 0 ||
+        newY >= SIZE
+    ) {
+
+        return;
+
+    }
+
+
+    /*
+       Hit wall?
+    */
+
+    if (
+        maze[newY][newX] === 1
+    ) {
+
+        /*
+           Small bump effect.
+        */
+
+        messageElement.textContent =
+            "🧱 Wall!";
+
+        setTimeout(() => {
+
+            if (!gameWon) {
+
+                messageElement.textContent =
+                    "Reach the 🏠!";
+
+            }
+
+        }, 300);
+
+        return;
+
+    }
+
+
+    /*
+       Start timer.
+    */
+
+    startTimer();
+
+
+    /*
+       Move.
+    */
+
+    player.x = newX;
+
+    player.y = newY;
+
+
+    moves++;
+
+    movesElement.textContent =
+        moves;
+
+
+    drawMaze();
+
+
+    /*
+       Check goal.
+    */
+
+    if (
+        player.x === goal.x &&
+        player.y === goal.y
+    ) {
+
+        winGame();
+
+    }
+
+}
+
+
+/* ==================================================
+   KEYBOARD CONTROLS
+================================================== */
+
+document.addEventListener(
+    "keydown",
+    function(e) {
+
+        let direction = null;
+
+
+        switch(e.key) {
+
+            case "ArrowUp":
+            case "w":
+            case "W":
+
+                direction = [0,-1];
+
+                break;
+
+
+            case "ArrowDown":
+            case "s":
+            case "S":
+
+                direction = [0,1];
+
+                break;
+
+
+            case "ArrowLeft":
+            case "a":
+            case "A":
+
+                direction = [-1,0];
+
+                break;
+
+
+            case "ArrowRight":
+            case "d":
+            case "D":
+
+                direction = [1,0];
+
+                break;
+
+        }
+
+
+        if (direction) {
+
+            e.preventDefault();
+
+            movePlayer(
+                direction[0],
+                direction[1]
+            );
+
+        }
+
+    }
+);
+
+
+/* ==================================================
+   TOUCH BUTTONS
+================================================== */
+
+document.querySelectorAll(
+    ".arrow"
+).forEach(button => {
+
+    button.addEventListener(
+        "pointerdown",
+        function(e) {
+
+            e.preventDefault();
+
+
+            const direction =
+                button.dataset.direction;
+
+
+            switch(direction) {
+
+                case "up":
+
+                    movePlayer(0,-1);
+
+                    break;
+
+
+                case "down":
+
+                    movePlayer(0,1);
+
+                    break;
+
+
+                case "left":
+
+                    movePlayer(-1,0);
+
+                    break;
+
+
+                case "right":
+
+                    movePlayer(1,0);
+
+                    break;
+
+            }
+
+        }
+    );
+
+});
+
+
+/* ==================================================
+   TIMER
+================================================== */
+
+function startTimer() {
+
+    if (startTime !== null)
+        return;
+
+
+    startTime =
+        Date.now();
+
+
+    timerInterval =
+        setInterval(
+            updateTimer,
+            100
+        );
+
+}
+
+
+function updateTimer() {
+
+    if (startTime === null)
+        return;
+
+
+    const elapsed =
+        Date.now() - startTime;
+
+
+    const seconds =
+        Math.floor(
+            elapsed / 1000
+        );
+
+
+    const minutes =
+        Math.floor(
+            seconds / 60
+        );
+
+
+    const secs =
+        seconds % 60;
+
+
+    timerElement.textContent =
+
+        `${minutes}:` +
+
+        `${String(secs)
+            .padStart(2,"0")}`;
+
+}
+
+
+/* ==================================================
+   STOP TIMER
+================================================== */
+
+function stopTimer() {
+
+    clearInterval(
+        timerInterval
+    );
+
+    timerInterval = null;
+
+}
+
+
+/* ==================================================
+   WIN
+================================================== */
+
+function winGame() {
+
+    gameWon = true;
+
+    stopTimer();
+
+
+    const elapsed =
+        startTime === null
+            ? 0
+            : Date.now() - startTime;
+
+
+    const seconds =
+        Math.floor(
+            elapsed / 1000
+        );
+
+
+    const minutes =
+        Math.floor(
+            seconds / 60
+        );
+
+
+    const secs =
+        seconds % 60;
+
+
+    winInfo.innerHTML =
+
+        `⏱️ Time:
+        <strong>
+        ${minutes}:${String(secs).padStart(2,"0")}
+        </strong>
+        <br>
+
+        👣 Moves:
+        <strong>
+        ${moves}
+        </strong>`;
+
+
+    winScreen.classList.add(
+        "show"
+    );
+
+}
+
+
+/* ==================================================
+   RESET PLAYER
+================================================== */
+
+function resetGame() {
+
+    gameWon = false;
+
+    moves = 0;
+
+    movesElement.textContent =
+        "0";
+
+
+    stopTimer();
+
+    startTime = null;
+
+
+    timerElement.textContent =
+        "0:00";
+
+
+    player.x = 1;
+
+    player.y = 0;
+
+
+    messageElement.textContent =
+        "Reach the 🏠!";
+
+
+    winScreen.classList.remove(
+        "show"
+    );
+
+
+    drawMaze();
+
+}
+
+
+/* ==================================================
+   NEW MAZE
+================================================== */
+
+function newMaze() {
+
+    generateMaze();
+
+    resetGame();
+
+}
+
+
+/* ==================================================
+   BUTTON EVENTS
+================================================== */
+
+document
+    .getElementById("reset")
+    .addEventListener(
+        "click",
+        resetGame
+    );
+
+
+document
+    .getElementById("newMaze")
+    .addEventListener(
+        "click",
+        newMaze
+    );
+
+
+document
+    .getElementById("playAgain")
+    .addEventListener(
+        "click",
+        newMaze
+    );
+
+
+/* ==================================================
+   START
+================================================== */
+
+generateMaze();
+
+drawMaze();
+
+</script>
 
 </body>
 </html>
-```
