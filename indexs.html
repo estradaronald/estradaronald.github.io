@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Punch the Face 👊</title>
+
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <div class="container">
+
+    <h1>🥊 PUNCH THE FACE</h1>
+
+    <p class="subtitle">
+      Click the face as many times as you can!
+    </p>
+
+    <!-- GAME STATS -->
+    <div class="game-info">
+
+      <div>
+        <span>Score</span>
+        <strong id="score">0</strong>
+      </div>
+
+      <div>
+        <span>Time</span>
+        <strong id="time">30</strong>
+      </div>
+
+      <div>
+        <span>Combo</span>
+        <strong id="combo">0</strong>
+      </div>
+
+    </div>
+
+
+    <!-- GAME AREA -->
+    <div id="gameArea">
+
+      <div id="message">
+        Press START GAME 👊
+      </div>
+
+      <!-- CHANGE THIS IMAGE URL -->
+      <img
+        id="target"
+        src="p.png"
+        alt="Target Face"
+      >
+
+      <!-- BOXING GLOVE -->
+      <div id="glove">
+        🥊
+      </div>
+
+      <!-- HIT TEXT -->
+      <div id="hitText">
+        💥 BONK!
+      </div>
+
+    </div>
+
+
+    <!-- START BUTTON -->
+    <button id="startBtn">
+      START GAME 👊
+    </button>
+
+
+    <!-- RESULT -->
+    <p id="result"></p>
+
+  </div>
+
+
+  <script src="script.js"></script>
+
+</body>
+</html>
